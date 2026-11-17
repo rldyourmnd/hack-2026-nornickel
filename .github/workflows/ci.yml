@@ -125,7 +125,7 @@ jobs:
 
   gate:
     needs: [backend, frontend, workflows, semgrep, dependency-review, merge-stops]
-    if: ${{ !cancelled() }}
+    if: ${{ always() }}
     runs-on: ubuntu-26.04
     timeout-minutes: 5
     steps:
