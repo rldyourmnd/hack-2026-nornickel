@@ -37,17 +37,18 @@ Layering:
 ## Commands
 
 ```bash
-uv run ruff check .
-uv run mypy
-uv run pytest
-cd apps/web && npm run typecheck
-cd apps/web && npm run build
-make ci
+just setup-source
+just check
+just setup
+just test
+just build
+just verify
 make eval-realcase
 docker compose config
 ```
 
-`make eval-realcase` requires a running API.
+`just check` is build-free after source preparation. Native tests/builds run on
+execution hosts. `make eval-realcase` requires a running API.
 
 ## Deployment
 
@@ -64,7 +65,7 @@ docker compose config
 
 ## Quality Notes
 
-- CI must remain offline and deterministic.
+- Source checks remain offline; full verification retains the mandatory scanner-rule network input and needs no live provider secrets or LLM calls.
 - Do not commit `.env`, provider credentials, runtime databases, artifacts, or
   local cache state.
 - Do not add legacy fixture seed data back into runtime paths.
