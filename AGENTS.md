@@ -30,26 +30,15 @@ UI copy or corpus examples.
 
 ## Main Commands
 
-```bash
-make install
-make ci
-make eval-realcase
-docker compose config
-```
+Use `just setup-source` for locked source-check dependencies without building the
+package or running install scripts, then `just check` for offline source/types.
+`just setup` prepares the locked execution graphs; `just test`, `just build` and
+`just verify` run the existing native/artifact/security checks on execution hosts.
+The source checker reads `src` directly rather than requiring an editable build.
 
-Backend-only checks:
-
-```bash
-uv run ruff check .
-uv run mypy
-uv run pytest
-```
-
-Frontend checks:
-
-```bash
-cd apps/web && npm run typecheck && npm run build
-```
+The remaining Make recipes are runtime operators. `make eval-realcase` still
+requires a running API and verifies the live evidence contract; CI does not call
+it, reindex, warmup, corpus ingest or container/deployment operations.
 
 ## Runtime Defaults
 
@@ -65,7 +54,7 @@ cd apps/web && npm run typecheck && npm run build
 
 ## Deployment
 
-- Pushes to `main` auto-deploy through `.github/workflows/deploy.yml`.
+- CI checks source, synthetic tests and the frontend artifact; runtime changes follow the stand deployment guide.
 - Stand deployment notes: `docs/deployment/nornikel-nddev.md`.
 - Batch ingest and atomic swap: `docs/deployment/full-ingest-runbook.md`.
 - Build full or sampled graphs into separate `DUCKDB_PATH`,
@@ -80,7 +69,7 @@ cd apps/web && npm run typecheck && npm run build
 
 Run checks matching the touched scope and report exact commands. For changes to
 ingest, retrieval, answer verification, source labels, or security-sensitive
-paths, include the relevant unit/integration tests and `make ci` when feasible.
+paths, include the relevant unit/integration tests and `just verify` when feasible.
 
 `make eval-realcase` requires a running API and verifies the live evidence
 contract against organizer-track questions.

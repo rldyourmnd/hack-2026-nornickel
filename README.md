@@ -77,7 +77,7 @@ Key boundaries:
 Requirements: Python 3.12, uv, Node 24, Docker Compose.
 
 ```bash
-make install
+just setup
 make api
 cd apps/web && VITE_API_BASE_URL=http://127.0.0.1:8000 npm run dev
 ```
@@ -85,12 +85,13 @@ cd apps/web && VITE_API_BASE_URL=http://127.0.0.1:8000 npm run dev
 Quality gates:
 
 ```bash
-make ci
+just verify
 make eval-realcase    # requires a running API
 docker compose config
 ```
 
-`make ci` is offline and deterministic: it does not require provider secrets or
+`just check` is offline after source preparation. Full `just verify` retains the
+mandatory network-backed Semgrep rule check and requires no provider secrets or
 network LLM calls.
 
 ## Configuration
@@ -142,3 +143,18 @@ legacy fixture leakage.
 
 This repository is the working home for the 2026 hackathon submission. The older
 pre-migration repository is frozen and is not used for deployment.
+
+## Source and execution preparation
+
+`just setup-source` prepares locked binary dependencies for source checking, skips
+the editable project build and disables frontend install scripts. It uses the
+already prepared Python selected by `.python-version`. `just check` then checks
+Python, mypy, frontend types, workflow safety and retained history without importing
+the application or making network requests.
+`just setup` retains the locked execution graphs; `just test` and `just build`
+produce the actual backend-test/frontend-artifact proof on execution hosts.
+`just verify` also retains the original metrics-off Semgrep security scan.
+The Makefile retains runtime operators only. These CI commands do not evaluate
+realcase questions, ingest a corpus, query a provider, reindex a collection, warm
+a model, touch a runtime database or deploy the stand. Synthetic tests keep their
+existing disposable fixtures.

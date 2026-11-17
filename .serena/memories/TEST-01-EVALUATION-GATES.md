@@ -13,7 +13,8 @@ Capture current validation commands and what they prove.
 
 ## Source Of Truth
 
-- `Makefile`: `lint`, `typecheck`, `test`, `ci`, `eval-realcase`, `reindex`, `warmup`.
+- `justfile`: source/native/artifact/security verification.
+- `Makefile`: runtime `eval-realcase`, `reindex`, `warmup` and service/container operators.
 - `.github/workflows/ci.yml`: CI backend/frontend gates.
 - `tests/unit/`: domain/service/adapter tests.
 - `tests/integration/`: FastAPI, DuckDB ledger, graph, ingest, analytics tests.
@@ -25,11 +26,10 @@ Capture current validation commands and what they prove.
 
 Full local verification remains:
 
-- `uv run ruff check .`: clean.
-- `uv run mypy`: clean.
-- `uv run pytest`: full backend test suite.
-- `cd apps/web && npm run typecheck`: clean.
-- `cd apps/web && npm run build`: clean.
+- `just check`: offline Python/frontend/source/workflow checks after preparation.
+- `just test`: the original synthetic backend suite on an execution host.
+- `just build`: the original frontend artifact on an execution host.
+- `just verify`: the complete checks, including metrics-off scanner rules.
 
 Provider-specific unit coverage includes:
 
@@ -54,12 +54,12 @@ Provider-specific unit coverage includes:
 ## Invariants
 
 - Add or update tests in the same change as ingestion, extraction, retrieval, answer verification, or API contract changes.
-- Keep CI offline: no provider secrets or external LLM calls are required for `make ci`.
+- Source checks stay offline. Full `just verify` keeps the mandatory scanner-rule network input and requires no provider secrets or external LLM calls.
 - Use `eval-realcase` only against a live stand/API.
 
 ## Verification
 
-- `make ci`: backend lint/type/test plus frontend build.
+- `just verify`: backend lint/type/test plus frontend build.
 - `make eval-realcase`: live stand honesty check.
 - `uv run pytest tests/integration/test_api.py::test_health_uses_llm_settings_aliases`:
   verifies `/health` uses the same LLM alias handling as runtime wiring while still

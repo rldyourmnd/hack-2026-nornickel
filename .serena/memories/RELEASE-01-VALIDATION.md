@@ -13,7 +13,8 @@ Capture validation, deployment, compose, and batch-ingest rollout contracts.
 
 ## Source Of Truth
 
-- `Makefile`: local validation and dev commands.
+- `justfile`: source/native verification commands.
+- `Makefile`: retained runtime operators.
 - `.github/workflows/ci.yml`: PR/main CI.
 - `.github/workflows/deploy.yml`: auto-deploy on push to `main`.
 - `docker-compose.yml` / `docker-compose.server.yml`: local/server topology.
@@ -25,7 +26,7 @@ Capture validation, deployment, compose, and batch-ingest rollout contracts.
 
 ## Entry Points
 
-- `make ci`: full local/CI-quality gate.
+- `just verify`: full local/CI-quality gate.
 - `make eval-realcase`: live API real-corpus honesty check.
 - `docker compose config`: compose syntax validation.
 - `scripts/ingest_corpus.py --dir DATA_HACK --sample N --workers N --max-mb N`: batch ingest.
@@ -86,9 +87,8 @@ Capture validation, deployment, compose, and batch-ingest rollout contracts.
 
 ## Verification
 
-- `uv run ruff check .`
-- `uv run mypy`
-- `uv run pytest`
-- `cd apps/web && npm run typecheck`
-- `cd apps/web && npm run build`
+- `just check`: offline source/types with prepared binary dependencies.
+- `just test`: existing synthetic backend tests on an execution host.
+- `just build`: existing frontend artifact on an execution host.
+- `just verify`: complete source/native/artifact/security verification.
 - `docker compose config`
