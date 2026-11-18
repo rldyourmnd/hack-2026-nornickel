@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-sdk@6e3000e74bc68c0b01ed4d1f7e5b85132e5f4493 # v0.6.75
+      - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-sdk@d70fed9613e0861124f6990fb2f4513d24741f26 # v0.6.76
         with:
           tools: just@1.59.0
       - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
@@ -50,14 +50,14 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-sdk@6e3000e74bc68c0b01ed4d1f7e5b85132e5f4493 # v0.6.75
+      - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-sdk@d70fed9613e0861124f6990fb2f4513d24741f26 # v0.6.76
         with:
           tools: just@1.59.0
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '24.21.0'
           package-manager-cache: false
-      - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-cache@6e3000e74bc68c0b01ed4d1f7e5b85132e5f4493 # v0.6.75
+      - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-cache@d70fed9613e0861124f6990fb2f4513d24741f26 # v0.6.76
       - name: Typecheck and build
         run: |
           just setup-frontend
@@ -71,7 +71,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-sdk@6e3000e74bc68c0b01ed4d1f7e5b85132e5f4493 # v0.6.75
+      - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-sdk@d70fed9613e0861124f6990fb2f4513d24741f26 # v0.6.76
         with:
           tools: just@1.59.0
       - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
@@ -100,7 +100,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-sdk@6e3000e74bc68c0b01ed4d1f7e5b85132e5f4493 # v0.6.75
+      - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-sdk@d70fed9613e0861124f6990fb2f4513d24741f26 # v0.6.76
         with:
           tools: zizmor@1.32.0,just@1.59.0
       - name: Install actionlint 1.7.12 and gitleaks 8.30.1, checked against their digests
@@ -119,7 +119,7 @@ jobs:
 
   merge-stops:
     if: github.event_name == 'pull_request'
-    uses: NDDev-Technocracy-OpenNetwork/nddev-ci/.github/workflows/merge-stops.yml@6e3000e74bc68c0b01ed4d1f7e5b85132e5f4493 # v0.6.75
+    uses: NDDev-Technocracy-OpenNetwork/nddev-ci/.github/workflows/merge-stops.yml@d70fed9613e0861124f6990fb2f4513d24741f26 # v0.6.76
     permissions:
       contents: read
 
