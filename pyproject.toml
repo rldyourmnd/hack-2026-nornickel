@@ -113,5 +113,5 @@ ignore_missing_imports = true
 follow_imports = "skip"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.33.0"]
 build-backend = "hatchling.build"
