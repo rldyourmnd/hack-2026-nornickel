@@ -40,7 +40,7 @@ services:
       - api
 
   qdrant:
-    image: qdrant/qdrant:v1.16.3
+    image: qdrant/qdrant:v1.20.2
     volumes:
       - qdrant_storage:/qdrant/storage
     restart: unless-stopped
