@@ -26,9 +26,9 @@ jobs:
       - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-sdk@534b2785b49d5d36d074902aa9eefcb5786d898a # v0.6.83
         with:
           tools: just@1.59.0
-      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with:
-          version: '0.13.5'
+          version: '0.13.9'
           enable-cache: 'true'
           cache-dependency-glob: 'uv.lock'
           # Only trusted main runs write the cache; pruning keeps source-built wheels only.
@@ -74,9 +74,9 @@ jobs:
       - uses: NDDev-Technocracy-OpenNetwork/nddev-ci/actions/hosted-sdk@534b2785b49d5d36d074902aa9eefcb5786d898a # v0.6.83
         with:
           tools: just@1.59.0
-      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with:
-          version: '0.13.5'
+          version: '0.13.9'
           enable-cache: 'true'
           cache-dependency-glob: 'uv.lock'
           # Only trusted main runs write the cache; pruning keeps source-built wheels only.
@@ -90,7 +90,7 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     steps:
-      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+      - uses: actions/dependency-review-action@bbc44d14a204704ccc493733616cd1e93a0321ec # v5.0.1
 
   workflows:
     runs-on: ubuntu-26.04
